@@ -93,14 +93,3 @@ MIT — free for personal and commercial use. Attribution appreciated.
 
 Created by Jay Cruz
 Inspired by job-seeking pain, fueled by caffeine ☕️
-
-```yaml
----
-
-Let me know if you want:
-- A version with screenshots
-- Markdown badges (e.g. Vercel deploy, GitHub stars, etc.)
-- A license file to go with it
-
-I can also generate a `LICENSE` and `.vercel.json` file if you're deploying there.
-```
