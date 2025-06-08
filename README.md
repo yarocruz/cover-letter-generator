@@ -16,9 +16,7 @@ A simple, fast, and affordable AI-powered web app that generates personalized co
 
 ## 📸 Demo
 
-[Live Demo](https://your-deployment-url.com) – _replace with your actual deployed URL_
-
----
+[Live Demo](https://cover-letter-generator-pied.vercel.app/)
 
 ## 🛠 Tech Stack
 
