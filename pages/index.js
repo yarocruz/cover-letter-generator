@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getCoverLetterCount, incrementCoverLetterCount } from '../utils/usage';
 
 export default function Home() {
   const [jobTitle, setJobTitle] = useState('');
@@ -9,6 +10,14 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   async function handleGenerate() {
+    const count = getCoverLetterCount();
+
+    if (count >= 1) {
+      alert('You’ve used your free cover letter. Unlock unlimited access for just $5.');
+      window.location.href = '/pricing';
+      return;
+    }
+
     setLoading(true);
     const res = await fetch('/api/generate', {
       method: 'POST',
@@ -18,11 +27,12 @@ export default function Home() {
     const data = await res.json();
     setResult(data.coverLetter);
     setLoading(false);
+    incrementCoverLetterCount();
   }
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">AI Cover Letter Generator</h1>
+      {/* <h1 className="text-3xl font-bold mb-6">AI Cover Letter Generator</h1> */}
 
       <label className="block mb-2 font-semibold">Job Title</label>
       <input
