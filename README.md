@@ -38,3 +38,69 @@ A simple, fast, and affordable AI-powered web app that generates personalized co
 git clone https://github.com/yourusername/ai-cover-letter-generator.git
 cd ai-cover-letter-generator
 ```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Create .env.local file
+
+```env
+# OpenAI API key
+OPENAI_API_KEY=your-openai-key
+
+# Stripe keys
+STRIPE_SECRET_KEY=your-stripe-secret
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your-publishable-key
+```
+
+### 4. Run the App
+
+```bash
+npm run dev
+```
+
+## 📁 Project Structure
+
+```bash
+/pages
+  index.js                # Home (cover letter form)
+  pricing.js              # Pricing page
+  success.js              # Post-checkout success page
+  /api
+    generate.js           # OpenAI integration
+    create-checkout-session.js  # Stripe payment route
+
+/styles
+  globals.css             # Tailwind imports
+```
+
+## ✅ TODO / Future Features
+
+- [ ] Login system with usage tracking
+- [ ] Save cover letters to user profile
+- [ ] PDF download option
+- [ ] More tones / customization
+- [ ] Resume + portfolio generator
+
+## 🧠 License
+
+MIT — free for personal and commercial use. Attribution appreciated.
+
+## 🙋 Author
+
+Created by Jay Cruz
+Inspired by job-seeking pain, fueled by caffeine ☕️
+
+```yaml
+---
+
+Let me know if you want:
+- A version with screenshots
+- Markdown badges (e.g. Vercel deploy, GitHub stars, etc.)
+- A license file to go with it
+
+I can also generate a `LICENSE` and `.vercel.json` file if you're deploying there.
+```
