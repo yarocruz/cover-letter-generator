@@ -1,65 +1,77 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState } from 'react';
 
 export default function Home() {
+  const [jobTitle, setJobTitle] = useState('');
+  const [jobDescription, setJobDescription] = useState('');
+  const [userInfo, setUserInfo] = useState('');
+  const [tone, setTone] = useState('Formal');
+  const [result, setResult] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function handleGenerate() {
+    setLoading(true);
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jobTitle, jobDescription, userInfo, tone }),
+    });
+    const data = await res.json();
+    setResult(data.coverLetter);
+    setLoading(false);
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="max-w-3xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">AI Cover Letter Generator</h1>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <label className="block mb-2 font-semibold">Job Title</label>
+      <input
+        className="w-full border p-2 rounded mb-4"
+        value={jobTitle}
+        onChange={(e) => setJobTitle(e.target.value)}
+      />
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      <label className="block mb-2 font-semibold">Job Description</label>
+      <textarea
+        className="w-full border p-2 rounded mb-4"
+        rows={4}
+        value={jobDescription}
+        onChange={(e) => setJobDescription(e.target.value)}
+      />
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+      <label className="block mb-2 font-semibold">Your Background Info</label>
+      <textarea
+        className="w-full border p-2 rounded mb-4"
+        rows={4}
+        value={userInfo}
+        onChange={(e) => setUserInfo(e.target.value)}
+      />
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+      <label className="block mb-2 font-semibold">Tone</label>
+      <select
+        className="w-full border p-2 rounded mb-4"
+        value={tone}
+        onChange={(e) => setTone(e.target.value)}
+      >
+        <option>Formal</option>
+        <option>Friendly</option>
+        <option>Confident</option>
+      </select>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+      <button
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+        onClick={handleGenerate}
+        disabled={loading}
+      >
+        {loading ? 'Generating...' : 'Generate Cover Letter'}
+      </button>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      {result && (
+        <div className="mt-6 border p-4 rounded bg-gray-100">
+          <h2 className="text-xl font-semibold mb-2">Generated Cover Letter</h2>
+          <pre className="whitespace-pre-wrap">{result}</pre>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      )}
     </div>
-  )
+  );
 }
