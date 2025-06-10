@@ -31,57 +31,72 @@ export default function Home() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      {/* <h1 className="text-3xl font-bold mb-6">AI Cover Letter Generator</h1> */}
+    <div className="min-h-screen flex bg-gray-50 text-gray-900">
 
-      <label className="block mb-2 font-semibold">Job Title</label>
-      <input
-        className="w-full border p-2 rounded mb-4"
-        value={jobTitle}
-        onChange={(e) => setJobTitle(e.target.value)}
-      />
 
-      <label className="block mb-2 font-semibold">Job Description</label>
-      <textarea
-        className="w-full border p-2 rounded mb-4"
-        rows={4}
-        value={jobDescription}
-        onChange={(e) => setJobDescription(e.target.value)}
-      />
+      {/* Main content */}
+      <main className="flex-1 p-10">
+        <div className="bg-white rounded-xl shadow-md p-8 max-w-2xl mx-auto space-y-6">
+          <h2 className="text-2xl font-semibold">Generate your cover letter</h2>
 
-      <label className="block mb-2 font-semibold">Your Background Info</label>
-      <textarea
-        className="w-full border p-2 rounded mb-4"
-        rows={4}
-        value={userInfo}
-        onChange={(e) => setUserInfo(e.target.value)}
-      />
+          <div>
+            <label className="block font-medium mb-1">Job Title</label>
+            <input
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="text"
+              value={jobTitle}
+              onChange={(e) => setJobTitle(e.target.value)}
+            />
+          </div>
 
-      <label className="block mb-2 font-semibold">Tone</label>
-      <select
-        className="w-full border p-2 rounded mb-4"
-        value={tone}
-        onChange={(e) => setTone(e.target.value)}
-      >
-        <option>Formal</option>
-        <option>Friendly</option>
-        <option>Confident</option>
-      </select>
+          <div>
+            <label className="block font-medium mb-1">Job Description</label>
+            <textarea
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows="6"
+              value={jobDescription}
+              onChange={(e) => setJobDescription(e.target.value)}
+            />
+          </div>
 
-      <button
-        className="bg-blue-600 text-white px-4 py-2 rounded"
-        onClick={handleGenerate}
-        disabled={loading}
-      >
-        {loading ? 'Generating...' : 'Generate Cover Letter'}
-      </button>
+          <div>
+            <label className="block font-medium mb-1">Your Background</label>
+            <textarea
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows="6"
+              value={userInfo}
+              onChange={(e) => setUserInfo(e.target.value)}
+            />
+          </div>
 
-      {result && (
-        <div className="mt-6 border p-4 rounded bg-gray-100">
-          <h2 className="text-xl font-semibold mb-2">Generated Cover Letter</h2>
-          <pre className="whitespace-pre-wrap">{result}</pre>
+          <div>
+            <label className="block font-medium mb-1">Tone</label>
+            <select
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={tone}
+              onChange={(e) => setTone(e.target.value)}
+            >
+              <option>Formal</option>
+              <option>Friendly</option>
+              <option>Confident</option>
+            </select>
+          </div>
+
+          <button
+            onClick={handleGenerate}
+            disabled={loading}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition"
+          >
+            {loading ? 'Generating...' : 'Generate Cover Letter'}
+          </button>
+
+          {result && (
+            <div className="bg-gray-100 border rounded-lg p-4 whitespace-pre-wrap font-serif text-gray-800 leading-relaxed">
+              {result}
+            </div>
+          )}
         </div>
-      )}
+      </main>
     </div>
   );
 }
