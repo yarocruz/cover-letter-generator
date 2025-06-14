@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.8",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.3",
+    "jspdf": "^3.0.1",
     "next": "15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
