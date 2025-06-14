@@ -4,7 +4,7 @@ export default function UpsellModal({ onClose }) {
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full space-y-4">
                 <h2 className="text-xl font-bold text-gray-800">You’ve hit your free limit</h2>
                 <p className="text-gray-600">
-                    You’ve used 3 free cover letter generations. Unlock unlimited access for just $5.
+                    You’ve used your one free cover letter generation. Unlock unlimited access for just $5.
                 </p>
                 <button
                     onClick={() => (window.location.href = '/pricing')}

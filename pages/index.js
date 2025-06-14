@@ -18,8 +18,9 @@ export default function Home() {
 
   async function handleGenerate() {
     const count = getCoverLetterCount();
+    const isPremium = localStorage.getItem('hasPremiumAccess') === 'true';
 
-    if (count >= 3) {
+    if (!isPremium && count >= 1) {
       setShowModal(true);
       return;
     }
