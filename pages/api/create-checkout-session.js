@@ -16,7 +16,7 @@ export default async function handler(req, res) {
                     price_data: {
                         currency: "usd",
                         product_data: {
-                            name: "AI Cover Letter Pack (3 uses)",
+                            name: "AI Cover Letter Package",
                         },
                         unit_amount: 500, // $5.00 in cents
                     },
